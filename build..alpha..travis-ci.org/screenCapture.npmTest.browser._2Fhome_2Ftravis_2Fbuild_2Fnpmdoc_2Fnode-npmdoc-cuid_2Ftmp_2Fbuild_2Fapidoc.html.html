@@ -1,0 +1,160 @@
+<html><head></head><body><div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a href="https://github.com/ericelliott/cuid#readme">cuid (v1.3.8)</a>
+</h1>
+<h4>Collision-resistant ids optimized for horizontal scaling and performance. For node and browsers.</h4>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.cuid">module cuid</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.cuid.fingerprint">
+            function <span class="apidocSignatureSpan">cuid.</span>fingerprint
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.cuid.slug">
+            function <span class="apidocSignatureSpan">cuid.</span>slug
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.cuid" id="apidoc.module.cuid">module cuid</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.cuid.fingerprint" id="apidoc.element.cuid.fingerprint">
+        function <span class="apidocSignatureSpan">cuid.</span>fingerprint
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function nodePrint() {
+  var os = require('os'),
+
+    padding = 2,
+    pid = pad((process.pid).toString(36), padding),
+    hostname = os.hostname(),
+    length = hostname.length,
+    hostId = pad((hostname)
+      .split('')
+      .reduce(function (prev, char) {
+        return +prev + char.charCodeAt(0);
+      }, +length + 36)
+      .toString(36),
+    padding);
+  return pid + hostId;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.cuid.slug" id="apidoc.element.cuid.slug">
+        function <span class="apidocSignatureSpan">cuid.</span>slug
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function slug() {
+  var date = new Date().getTime().toString(36),
+    counter,
+    print = api.fingerprint().slice(0,1) +
+      api.fingerprint().slice(-1),
+    random = randomBlock().slice(-2);
+
+    counter = safeCounter().toString(36).slice(-4);
+
+  return date.slice(-2) +
+    counter + print + random;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+* [cuid for PHP](https://github.com/endyjasmi/cuid) - [Endy Jasmi](https://github.com/endyjasmi)
+* [cuid for Elixir](https://github.com/duailibe/cuid) - [Lucas Duailibe](https://github.com/duailibe)
+* [cuid for Haskell](https://github.com/eightyeight/hscuid) - [Daniel Buckmaster](https://github.com/eightyeight)
+
+
+# Short URLs
+
+Need a smaller ID? `cuid.<span class="apidocCodeKeywordSpan">slug</span>()` is for you. With fewer than 10 characters, `.slug()`
+is a great solution for short urls. They're good for things like URL slug disambiguation (i.e., `example.com/some-post-title
+-&lt;slug&gt;`) but **absolutely not recommended for database unique IDs**. Stick to the full cuid for database keys.
+
+Be aware, slugs:
+
+* are less likely to be sequential. Stick to full cuids for database lookups, if possible.
+
+* have less random data, less room for the counter, and less room for the fingerprint, which means that all of them are more likely
+ to collide or be guessed, especially as CPU speeds increase.
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
+</body></html>
