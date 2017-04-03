@@ -1,0 +1,179 @@
+# api documentation for  [cuid (v1.3.8)](https://github.com/ericelliott/cuid#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-cuid.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-cuid) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-cuid.svg)](https://travis-ci.org/npmdoc/node-npmdoc-cuid)
+#### Collision-resistant ids optimized for horizontal scaling and performance. For node and browsers.
+
+[![NPM](https://nodei.co/npm/cuid.png?downloads=true)](https://www.npmjs.com/package/cuid)
+
+[![apidoc](https://npmdoc.github.io/node-npmdoc-cuid/build/screenCapture.buildNpmdoc.browser._2Fhome_2Ftravis_2Fbuild_2Fnpmdoc_2Fnode-npmdoc-cuid_2Ftmp_2Fbuild_2Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-cuid/build..beta..travis-ci.org/apidoc.html)
+
+![npmPackageListing](https://npmdoc.github.io/node-npmdoc-cuid/build/screenCapture.npmPackageListing.svg)
+
+![npmPackageDependencyTree](https://npmdoc.github.io/node-npmdoc-cuid/build/screenCapture.npmPackageDependencyTree.svg)
+
+
+
+# package.json
+
+```json
+
+{
+    "author": {
+        "name": "Eric Elliott",
+        "url": "https://ericelliottjs.com"
+    },
+    "browser": "./dist/browser-cuid.js",
+    "bugs": {
+        "url": "https://github.com/ericelliott/cuid/issues"
+    },
+    "dependencies": {
+        "browser-fingerprint": "0.0.1",
+        "core-js": "^1.1.1",
+        "node-fingerprint": "0.0.2"
+    },
+    "description": "Collision-resistant ids optimized for horizontal scaling and performance. For node and browsers.",
+    "devDependencies": {
+        "babel": "5.6.14",
+        "babel-eslint": "^4.0.10",
+        "babel-loader": "5.3.0",
+        "babelify": "^6.2.0",
+        "ecstatic": "^0.8.0",
+        "eslint": "0.24.0",
+        "faucet": "0.0.1",
+        "node-libs-browser": "0.5.2",
+        "rimraf": "2.4.1",
+        "sauce-connect-launcher": "^0.12.0",
+        "saucelabs": "0.1.1",
+        "tape": "4.2.0",
+        "wd": "^0.3.12",
+        "webpack": "1.10.1",
+        "zuul": "^3.3.0"
+    },
+    "directories": {},
+    "dist": {
+        "shasum": "4b875e0969bad764f7ec0706cf44f5fb0831f6b7",
+        "tarball": "https://registry.npmjs.org/cuid/-/cuid-1.3.8.tgz"
+    },
+    "gitHead": "9fcb9e85316d0eec9a4a596a82432149f1950f81",
+    "homepage": "https://github.com/ericelliott/cuid#readme",
+    "keywords": [
+        "id",
+        "guid",
+        "uid",
+        "unique id",
+        "uuid"
+    ],
+    "license": "MIT",
+    "main": "./dist/node-cuid.js",
+    "maintainers": [
+        {
+            "name": "ericelliott",
+            "email": "eric@ericleads.com"
+        }
+    ],
+    "name": "cuid",
+    "optionalDependencies": {},
+    "readme": "ERROR: No README data found!",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ericelliott/cuid.git"
+    },
+    "scripts": {
+        "build": "npm run build:server && npm run build:client && npm run build:test",
+        "build:client": "NODE_ENV=production WEBPACK_TARGET=client webpack -p",
+        "build:server": "NODE_ENV=production WEBPACK_TARGET=server webpack",
+        "build:test": "browserify ./test/client/index.js -s testcuid -t babelify --outfile test/client/test-cuid.js",
+        "clean": "rimraf build && rimraf test/client/test-cuid.js",
+        "comment:build:test": "NODE_ENV=production WEBPACK_TARGET=test webpack -p",
+        "lint": "eslint source test",
+        "prebuild": "npm run clean",
+        "prepublish": "npm run validate",
+        "prevalidate": "npm run clean",
+        "test": "npm run test:server && npm run test:client",
+        "test:client": "#zuul -- test/client/test-cuid",
+        "test:server": "babel-node test/server",
+        "validate": "npm run lint && npm run build && npm run test",
+        "validate-dev": "npm run lint && npm run build && npm run test | faucet"
+    },
+    "version": "1.3.8"
+}
+```
+
+
+
+# <a name="apidoc.tableOfContents"></a>[table of contents](#apidoc.tableOfContents)
+
+#### [module cuid](#apidoc.module.cuid)
+1.  [function <span class="apidocSignatureSpan">cuid.</span>fingerprint ()](#apidoc.element.cuid.fingerprint)
+1.  [function <span class="apidocSignatureSpan">cuid.</span>slug ()](#apidoc.element.cuid.slug)
+
+
+
+# <a name="apidoc.module.cuid"></a>[module cuid](#apidoc.module.cuid)
+
+#### <a name="apidoc.element.cuid.fingerprint"></a>[function <span class="apidocSignatureSpan">cuid.</span>fingerprint ()](#apidoc.element.cuid.fingerprint)
+- description and source-code
+```javascript
+function nodePrint() {
+  var os = require('os'),
+
+    padding = 2,
+    pid = pad((process.pid).toString(36), padding),
+    hostname = os.hostname(),
+    length = hostname.length,
+    hostId = pad((hostname)
+      .split('')
+      .reduce(function (prev, char) {
+        return +prev + char.charCodeAt(0);
+      }, +length + 36)
+      .toString(36),
+    padding);
+  return pid + hostId;
+}
+```
+- example usage
+```shell
+n/a
+```
+
+#### <a name="apidoc.element.cuid.slug"></a>[function <span class="apidocSignatureSpan">cuid.</span>slug ()](#apidoc.element.cuid.slug)
+- description and source-code
+```javascript
+function slug() {
+  var date = new Date().getTime().toString(36),
+    counter,
+    print = api.fingerprint().slice(0,1) +
+      api.fingerprint().slice(-1),
+    random = randomBlock().slice(-2);
+
+    counter = safeCounter().toString(36).slice(-4);
+
+  return date.slice(-2) +
+    counter + print + random;
+}
+```
+- example usage
+```shell
+...
+* [cuid for PHP](https://github.com/endyjasmi/cuid) - [Endy Jasmi](https://github.com/endyjasmi)
+* [cuid for Elixir](https://github.com/duailibe/cuid) - [Lucas Duailibe](https://github.com/duailibe)
+* [cuid for Haskell](https://github.com/eightyeight/hscuid) - [Daniel Buckmaster](https://github.com/eightyeight)
+
+
+# Short URLs
+
+Need a smaller ID? 'cuid.slug()' is for you. With fewer than 10 characters, '.slug()' is a great solution for short urls. They're
+ good for things like URL slug disambiguation (i.e., 'example.com/some-post-title-<slug>') but **absolutely not recommended for
+database unique IDs**. Stick to the full cuid for database keys.
+
+Be aware, slugs:
+
+* are less likely to be sequential. Stick to full cuids for database lookups, if possible.
+
+* have less random data, less room for the counter, and less room for the fingerprint, which means that all of them are more likely
+ to collide or be guessed, especially as CPU speeds increase.
+...
+```
+
+
+
+# misc
+- this document was created with [utility2](https://github.com/kaizhu256/node-utility2)
