@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="https://github.com/ericelliott/cuid#readme"
-
-    >cuid (v1.3.8)</a>
+    <a href="https://github.com/ericelliott/cuid#readme">cuid (v1.3.8)</a>
 </h1>
 <h4>Collision-resistant ids optimized for horizontal scaling and performance. For node and browsers.</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.cuid">module cuid</a><ol>
 
@@ -154,7 +147,7 @@
     <li>description and source-code<pre class="apidocCodePre">function cuid() {
   // Starting with a lowercase letter makes
   // it HTML element ID friendly.
-  var letter = &#x27;c&#x27;, // hard-coded allows for sequential access
+  var letter = 'c', // hard-coded allows for sequential access
 
     // timestamp
     // warning: this exposes the exact date and time
@@ -189,14 +182,14 @@
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function nodePrint() {
-  var os = require(&#x27;os&#x27;),
+  var os = require('os'),
 
     padding = 2,
     pid = pad((process.pid).toString(36), padding),
     hostname = os.hostname(),
     length = hostname.length,
     hostId = pad((hostname)
-      .split(&#x27;&#x27;)
+      .split('')
       .reduce(function (prev, char) {
         return +prev + char.charCodeAt(0);
       }, +length + 36)
@@ -237,8 +230,8 @@
 # Short URLs
 
 Need a smaller ID? `cuid.<span class="apidocCodeKeywordSpan">slug</span>()` is for you. With fewer than 10 characters, `.slug()`
-is a great solution for short urls. They&#x27;re good for things like URL slug disambiguation (i.e., `example.com/some-post-title
--&#x3c;slug&#x3e;`) but **absolutely not recommended for database unique IDs**. Stick to the full cuid for database keys.
+is a great solution for short urls. They're good for things like URL slug disambiguation (i.e., `example.com/some-post-title
+-&lt;slug&gt;`) but **absolutely not recommended for database unique IDs**. Stick to the full cuid for database keys.
 
 Be aware, slugs:
 
@@ -279,14 +272,14 @@ Be aware, slugs:
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function nodePrint() {
-  var os = require(&#x27;os&#x27;),
+  var os = require('os'),
 
     padding = 2,
     pid = pad((process.pid).toString(36), padding),
     hostname = os.hostname(),
     length = hostname.length,
     hostId = pad((hostname)
-      .split(&#x27;&#x27;)
+      .split('')
       .reduce(function (prev, char) {
         return +prev + char.charCodeAt(0);
       }, +length + 36)
@@ -332,8 +325,8 @@ Be aware, slugs:
 # Short URLs
 
 Need a smaller ID? `cuid.<span class="apidocCodeKeywordSpan">slug</span>()` is for you. With fewer than 10 characters, `.slug()`
-is a great solution for short urls. They&#x27;re good for things like URL slug disambiguation (i.e., `example.com/some-post-title
--&#x3c;slug&#x3e;`) but **absolutely not recommended for database unique IDs**. Stick to the full cuid for database keys.
+is a great solution for short urls. They're good for things like URL slug disambiguation (i.e., `example.com/some-post-title
+-&lt;slug&gt;`) but **absolutely not recommended for database unique IDs**. Stick to the full cuid for database keys.
 
 Be aware, slugs:
 
@@ -371,3 +364,4 @@ Be aware, slugs:
     ]
 </div>
 </div>
+</body></html>
