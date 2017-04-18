@@ -1,7 +1,7 @@
 {
     "author": "kai zhu <kaizhu256@gmail.com>",
     "buildNpmdoc": "cuid",
-    "description": "api documentation for [cuid (v1.3.8)](https://github.com/ericelliott/cuid#readme) [![npm package](https://img.shields.io/npm/v/npmdoc-cuid.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-cuid) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-cuid.svg)](https://travis-ci.org/npmdoc/node-npmdoc-cuid)",
+    "description": "#### api documentation for  [cuid (v1.3.8)](https://github.com/ericelliott/cuid#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-cuid.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-cuid) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-cuid.svg)](https://travis-ci.org/npmdoc/node-npmdoc-cuid)",
     "devDependencies": {
         "cuid": "*",
         "electron-lite": "kaizhu256/node-electron-lite#alpha",
@@ -36,5 +36,5 @@
         "start": "(set -e; export PORT=${PORT:-8080}; utility2 start test.js)",
         "test": "(set -e; export PORT=$(utility2 shServerPortRandom); utility2 test test.js)"
     },
-    "version": "0.0.2"
+    "version": "0.0.3"
 }

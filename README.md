@@ -1,9 +1,14 @@
-# api documentation for  [cuid (v1.3.8)](https://github.com/ericelliott/cuid#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-cuid.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-cuid) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-cuid.svg)](https://travis-ci.org/npmdoc/node-npmdoc-cuid)
+# npmdoc-cuid
+
+#### api documentation for  [cuid (v1.3.8)](https://github.com/ericelliott/cuid#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-cuid.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-cuid) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-cuid.svg)](https://travis-ci.org/npmdoc/node-npmdoc-cuid)
+
 #### Collision-resistant ids optimized for horizontal scaling and performance. For node and browsers.
 
-[![NPM](https://nodei.co/npm/cuid.png?downloads=true)](https://www.npmjs.com/package/cuid)
+[![NPM](https://nodei.co/npm/cuid.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/cuid)
 
-[![apidoc](https://npmdoc.github.io/node-npmdoc-cuid/build/screenCapture.buildNpmdoc.browser._2Fhome_2Ftravis_2Fbuild_2Fnpmdoc_2Fnode-npmdoc-cuid_2Ftmp_2Fbuild_2Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-cuid/build/apidoc.html)
+- [https://npmdoc.github.io/node-npmdoc-cuid/build/apidoc.html](https://npmdoc.github.io/node-npmdoc-cuid/build/apidoc.html)
+
+[![apidoc](https://npmdoc.github.io/node-npmdoc-cuid/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-cuid/build/apidoc.html)
 
 ![npmPackageListing](https://npmdoc.github.io/node-npmdoc-cuid/build/screenCapture.npmPackageListing.svg)
 
@@ -65,13 +70,11 @@
     "main": "./dist/node-cuid.js",
     "maintainers": [
         {
-            "name": "ericelliott",
-            "email": "eric@ericleads.com"
+            "name": "ericelliott"
         }
     ],
     "name": "cuid",
     "optionalDependencies": {},
-    "readme": "ERROR: No README data found!",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/ericelliott/cuid.git"
@@ -95,82 +98,6 @@
     },
     "version": "1.3.8"
 }
-```
-
-
-
-# <a name="apidoc.tableOfContents"></a>[table of contents](#apidoc.tableOfContents)
-
-#### [module cuid](#apidoc.module.cuid)
-1.  [function <span class="apidocSignatureSpan">cuid.</span>fingerprint ()](#apidoc.element.cuid.fingerprint)
-1.  [function <span class="apidocSignatureSpan">cuid.</span>slug ()](#apidoc.element.cuid.slug)
-
-
-
-# <a name="apidoc.module.cuid"></a>[module cuid](#apidoc.module.cuid)
-
-#### <a name="apidoc.element.cuid.fingerprint"></a>[function <span class="apidocSignatureSpan">cuid.</span>fingerprint ()](#apidoc.element.cuid.fingerprint)
-- description and source-code
-```javascript
-function nodePrint() {
-  var os = require('os'),
-
-    padding = 2,
-    pid = pad((process.pid).toString(36), padding),
-    hostname = os.hostname(),
-    length = hostname.length,
-    hostId = pad((hostname)
-      .split('')
-      .reduce(function (prev, char) {
-        return +prev + char.charCodeAt(0);
-      }, +length + 36)
-      .toString(36),
-    padding);
-  return pid + hostId;
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.cuid.slug"></a>[function <span class="apidocSignatureSpan">cuid.</span>slug ()](#apidoc.element.cuid.slug)
-- description and source-code
-```javascript
-function slug() {
-  var date = new Date().getTime().toString(36),
-    counter,
-    print = api.fingerprint().slice(0,1) +
-      api.fingerprint().slice(-1),
-    random = randomBlock().slice(-2);
-
-    counter = safeCounter().toString(36).slice(-4);
-
-  return date.slice(-2) +
-    counter + print + random;
-}
-```
-- example usage
-```shell
-...
-* [cuid for PHP](https://github.com/endyjasmi/cuid) - [Endy Jasmi](https://github.com/endyjasmi)
-* [cuid for Elixir](https://github.com/duailibe/cuid) - [Lucas Duailibe](https://github.com/duailibe)
-* [cuid for Haskell](https://github.com/eightyeight/hscuid) - [Daniel Buckmaster](https://github.com/eightyeight)
-
-
-# Short URLs
-
-Need a smaller ID? 'cuid.slug()' is for you. With fewer than 10 characters, '.slug()' is a great solution for short urls. They're
- good for things like URL slug disambiguation (i.e., 'example.com/some-post-title-<slug>') but **absolutely not recommended for
-database unique IDs**. Stick to the full cuid for database keys.
-
-Be aware, slugs:
-
-* are less likely to be sequential. Stick to full cuids for database lookups, if possible.
-
-* have less random data, less room for the counter, and less room for the fingerprint, which means that all of them are more likely
- to collide or be guessed, especially as CPU speeds increase.
-...
 ```
 
 
