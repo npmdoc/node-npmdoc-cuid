@@ -88,54 +88,6 @@
 
         </li>
 
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.cuid.toString">
-            function <span class="apidocSignatureSpan">cuid.</span>toString
-            <span class="apidocSignatureSpan">()</span>
-            </a>
-
-        </li>
-
-    </ol></li>
-
-    <li class="apidocModuleLi"><a href="#apidoc.module.cuid.fingerprint">module cuid.fingerprint</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.cuid.fingerprint.fingerprint">
-            function <span class="apidocSignatureSpan">cuid.</span>fingerprint
-            <span class="apidocSignatureSpan">()</span>
-            </a>
-
-        </li>
-
-    </ol></li>
-
-    <li class="apidocModuleLi"><a href="#apidoc.module.cuid.slug">module cuid.slug</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.cuid.slug.slug">
-            function <span class="apidocSignatureSpan">cuid.</span>slug
-            <span class="apidocSignatureSpan">()</span>
-            </a>
-
-        </li>
-
-    </ol></li>
-
-    <li class="apidocModuleLi"><a href="#apidoc.module.cuid.toString">module cuid.toString</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.cuid.toString.toString">
-            function <span class="apidocSignatureSpan">cuid.</span>toString
-            <span class="apidocSignatureSpan">()</span>
-            </a>
-
-        </li>
-
     </ol></li>
 
 </ol></div>
@@ -176,7 +128,22 @@
 
   return  (letter + timestamp + counter + fingerprint + random);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+}
+
+return pass;
+};
+
+test(&#x27;cuid()&#x27;, assert =&#x3e; {
+assert.ok(typeof cuid() === &#x27;string&#x27;,
+  &#x27;.<span class="apidocCodeKeywordSpan">cuid</span>() should return a string.&#x27;);
+
+assert.ok(collisionTest(cuid),
+  &#x27;cuids should not collide.&#x27;);
+
+assert.ok(collisionTest(slug),
+  &#x27;slugs should not collide.&#x27;);
+...</pre></li>
     </ul>
 
 
@@ -204,7 +171,23 @@
     padding);
   return pid + hostId;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+  // Prevent same-machine collisions.
+  counter,
+
+  // A few chars to generate distinct ids for different
+  // clients (so different computers are far less
+  // likely to generate the same id)
+  fingerprint = api.<span class="apidocCodeKeywordSpan">fingerprint</span>(),
+
+  // Grab some more chars from Math.random()
+  random = randomBlock() + randomBlock();
+
+  counter = pad(safeCounter().toString(base), blockSize);
+
+return  (letter + timestamp + counter + fingerprint + random);
+...</pre></li>
     </ul>
 
 
@@ -247,119 +230,6 @@ Be aware, slugs:
 * have less random data, less room for the counter, and less room for the fingerprint, which means that all of them are more likely
  to collide or be guessed, especially as CPU speeds increase.
 ...</pre></li>
-    </ul>
-
-
-
-    <h2>
-        <a href="#apidoc.element.cuid.toString" id="apidoc.element.cuid.toString">
-        function <span class="apidocSignatureSpan">cuid.</span>toString
-        <span class="apidocSignatureSpan">()</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">toString = function () {
-    return text;
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.cuid.fingerprint" id="apidoc.module.cuid.fingerprint">module cuid.fingerprint</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.cuid.fingerprint.fingerprint" id="apidoc.element.cuid.fingerprint.fingerprint">
-        function <span class="apidocSignatureSpan">cuid.</span>fingerprint
-        <span class="apidocSignatureSpan">()</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">function nodePrint() {
-  var os = require(&#x27;os&#x27;),
-
-    padding = 2,
-    pid = pad((process.pid).toString(36), padding),
-    hostname = os.hostname(),
-    length = hostname.length,
-    hostId = pad((hostname)
-      .split(&#x27;&#x27;)
-      .reduce(function (prev, char) {
-        return +prev + char.charCodeAt(0);
-      }, +length + 36)
-      .toString(36),
-    padding);
-  return pid + hostId;
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.cuid.slug" id="apidoc.module.cuid.slug">module cuid.slug</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.cuid.slug.slug" id="apidoc.element.cuid.slug.slug">
-        function <span class="apidocSignatureSpan">cuid.</span>slug
-        <span class="apidocSignatureSpan">()</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">function slug() {
-  var date = new Date().getTime().toString(36),
-    counter,
-    print = api.fingerprint().slice(0,1) +
-      api.fingerprint().slice(-1),
-    random = randomBlock().slice(-2);
-
-    counter = safeCounter().toString(36).slice(-4);
-
-  return date.slice(-2) +
-    counter + print + random;
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">...
-* [cuid for PHP](https://github.com/endyjasmi/cuid) - [Endy Jasmi](https://github.com/endyjasmi)
-* [cuid for Elixir](https://github.com/duailibe/cuid) - [Lucas Duailibe](https://github.com/duailibe)
-* [cuid for Haskell](https://github.com/eightyeight/hscuid) - [Daniel Buckmaster](https://github.com/eightyeight)
-
-
-# Short URLs
-
-Need a smaller ID? `cuid.<span class="apidocCodeKeywordSpan">slug</span>()` is for you. With fewer than 10 characters, `.slug()`
-is a great solution for short urls. They&#x27;re good for things like URL slug disambiguation (i.e., `example.com/some-post-title
--&#x3c;slug&#x3e;`) but **absolutely not recommended for database unique IDs**. Stick to the full cuid for database keys.
-
-Be aware, slugs:
-
-* are less likely to be sequential. Stick to full cuids for database lookups, if possible.
-
-* have less random data, less room for the counter, and less room for the fingerprint, which means that all of them are more likely
- to collide or be guessed, especially as CPU speeds increase.
-...</pre></li>
-    </ul>
-
-
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.cuid.toString" id="apidoc.module.cuid.toString">module cuid.toString</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.cuid.toString.toString" id="apidoc.element.cuid.toString.toString">
-        function <span class="apidocSignatureSpan">cuid.</span>toString
-        <span class="apidocSignatureSpan">()</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">function toString() { [native code] }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
 
