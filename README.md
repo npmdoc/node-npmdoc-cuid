@@ -1,6 +1,6 @@
 # npmdoc-cuid
 
-#### api documentation for  [cuid (v1.3.8)](https://github.com/ericelliott/cuid#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-cuid.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-cuid) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-cuid.svg)](https://travis-ci.org/npmdoc/node-npmdoc-cuid)
+#### basic api documentation for  [cuid (v1.3.8)](https://github.com/ericelliott/cuid#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-cuid.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-cuid) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-cuid.svg)](https://travis-ci.org/npmdoc/node-npmdoc-cuid)
 
 #### Collision-resistant ids optimized for horizontal scaling and performance. For node and browsers.
 
@@ -96,7 +96,8 @@
         "validate": "npm run lint && npm run build && npm run test",
         "validate-dev": "npm run lint && npm run build && npm run test | faucet"
     },
-    "version": "1.3.8"
+    "version": "1.3.8",
+    "bin": {}
 }
 ```
 
